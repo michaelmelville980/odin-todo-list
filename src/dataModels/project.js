@@ -1,15 +1,39 @@
 
 import Todo from './todo.js';
 
+/* Magic Values */
+const TITLE_MAX_LENGTH = 64;
+const TITLE_LENGTH_ERROR = "Invalid Title (Must be <= 64 characters)";
+
 export default class Project {
+
+    /* Constructor */
+
     constructor({title = "", todoList = []}){
         this.id = crypto.randomUUID();
-        if (title.length > 64) { 
-            throw new typeError('Invalid Title (Must be <= 64 characters)');
+        if (title.length > TITLE_MAX_LENGTH) { 
+            throw new Error(TITLE_LENGTH_ERROR);
         }
         this.title = title;
         this.todoList = todoList; //don't need to validate since this isn't user input
     }
 
+    /* Methods */
+
+    updateTitle(newTitle){
+        if(newTitle.length > TITLE_MAX_LENGTH) {
+            throw new Error(TITLE_LENGTH_ERROR)
+        }
+        this.title = newTitle;
+    }
+
+    addTodo(todoItem){
+        this.todoList.push(todoItem);
+    }
+
+    removeTodo(todoID){
+        const removeIndex = this.todoList.indexOf(todoID);
+        this.todoList.splice(removeIndex, 1);
+    }
 
 }
