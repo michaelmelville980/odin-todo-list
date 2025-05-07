@@ -10,15 +10,15 @@ const DESCRIPTION_MAX_LENGTH = 150;
 const DESCRIPTION_LENGTH_ERROR = "Invalid Description (Must be <= 150 characters)";
 const DATE_INVALID_ERROR = "Invalid Date Format (Try y-m-d format)";
 const PRIORITY_INVALID_ERROR = "Invalid Priority (Chose 'High', 'Medium', or 'Low')";
-const NOTES_MAX_LENGTH = 500;
-const NOTES_LENGTH_ERROR = "Invalid Note (Must be <= 500 characters)";
+const NOTE_MAX_LENGTH = 500;
+const NOTE_LENGTH_ERROR = "Invalid Note (Must be <= 500 characters)";
 
 
 export default class Todo {
     
     /* Constructor */
 
-    constructor({title = "", description = "", due = "", priority = "", notes = "", completed = false}){
+    constructor({title = "", description = "", due = "", priority = "", note = "", completed = false}){
 
         this.id = crypto.randomUUID();
 
@@ -32,7 +32,7 @@ export default class Todo {
         }
         this.description = description;
 
-        const date = due.parseISO();
+        const date = parseISO(due);
         if (!isValid(date)){
             throw new Error(DATE_INVALID_ERROR);
         }
@@ -43,47 +43,59 @@ export default class Todo {
         }
         this.priority = priority;
 
-        if (notes.length > NOTES_MAX_LENGTH) {
-            throw new Error(NOTES_LENGTH_ERROR);
+        if (note.length > NOTE_MAX_LENGTH) {
+            throw new Error(NOTE_LENGTH_ERROR);
         }
-        this.notes = notes;
+        this.note = note;
 
         this.completed = completed;
 
     }
 
     /* Methods */
-    updateTitle(){
 
+    updateTitle(newTitle){
+        if(newTitle.length > TITLE_MAX_LENGTH) {
+            throw new Error(TITLE_LENGTH_ERROR);
+        }
+        this.title = newTitle;
     }
 
-    updateDescription(){
-
+    updateDescription(newDescription){
+        if (description.length > DESCRIPTION_MAX_LENGTH) {
+            throw new Error(DESCRIPTION_LENGTH_ERROR);
+        }
+        this.description = newDescription;
     }
 
-    updateDue(){
-
+    updateDue(newDate){
+        const date = due.parseISO();
+        if (!isValid(date)){
+            throw new Error(DATE_INVALID_ERROR);
+        }
+        this.due = newDate;
     }
 
-    updatePriority(){
-
+    updatePriority(newPriority){
+        if (priority !== "High" && priority !== "Medium" && priority !== "Low"){
+            throw new Error(PRIORITY_INVALID_ERROR);
+        }
+        this.priority = newPriority;
     }
 
-    updateNotes(){
-
+    updateNote(newNote){
+        if (note.length > NOTE_MAX_LENGTH) {
+            throw new Error(NOTE_LENGTH_ERROR);
+        }
+        this.note = newNote;
     }
 
     markDone(){
-
+        this.completed = true;
     }
 
     markUndone(){
-
+        this.completed = false;
     }
-
-
-
-
-
 
 }
