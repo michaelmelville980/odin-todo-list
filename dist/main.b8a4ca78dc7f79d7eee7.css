@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#sidebar-left{
+    background-color: rgb(229, 229, 229);
+    box-shadow: inset -8px 0 8px -4px rgba(0,0,0,0.3);
+    padding: 1rem;
+}
+
+#projects{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#projects > div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#individual-project-right{
+    padding: 1rem;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+
+
+/*# sourceMappingURL=main.b8a4ca78dc7f79d7eee7.css.map*/
