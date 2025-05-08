@@ -15,7 +15,7 @@ export default class Project {
             throw new Error(TITLE_LENGTH_ERROR);
         }
         this.title = title;
-        this.todoList = todoList; //don't need to validate since this isn't user input
+        this.todoList = todoList; 
     }
 
     /* Methods */

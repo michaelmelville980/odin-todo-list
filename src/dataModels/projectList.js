@@ -18,14 +18,11 @@ export default class ProjectList {
     }
 
     removeProject(projectID){
-        const tmp = [];
-        for (let i = 0; i < this.projects.length; i++){
-            if (this.projects[i].id !== projectID){
-                tmp.push[this.projects[i]];
-            }
+        const indexToRemove = this.projects.findIndex(project => project.id === projectID);
+        if (indexToRemove > -1){
+            this.projects.splice(indexToRemove, 1);
         }
-        this.projects = tmp;
-    }
+    } 
 
 }
 
